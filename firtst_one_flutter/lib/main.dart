@@ -1,3 +1,4 @@
+import 'package:firtst_one_flutter/question.dart';
 import 'package:flutter/material.dart';
 
 //void main(){
@@ -6,9 +7,20 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(FirstApp());
 
-class FirstApp extends StatelessWidget {
+class FirstApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _FirstAppState();
+  }
 
-  void answerToQuestion1(){
+
+}
+class _FirstAppState extends State<FirstApp>{
+  var _questionIndex = 0;
+
+/*  void answerToQuestion1(){
+    _questionIndex++;
     print("You are of type 1");
   }
   void answerToQuestion2(){
@@ -16,6 +28,25 @@ class FirstApp extends StatelessWidget {
   }
   void answerToQuestion3(){
     print("You are of type 3");
+  }*/
+
+  void answerToQuestion1(){
+    setState(() {
+      _questionIndex = ++_questionIndex%3;
+      print("You are of type 1");
+    });
+  }
+  void answerToQuestion2(){
+    setState(() {
+      _questionIndex++;
+      print("You are of type2");
+    });
+  }
+  void answerToQuestion3(){
+    setState(() {
+      _questionIndex++;
+      print("You are of type 3");
+    });
   }
 
   @override
@@ -35,7 +66,7 @@ class FirstApp extends StatelessWidget {
         ),
         body: Column(
           children: <Widget>[
-            Text(questions[0]),
+            Question(questions.elementAt(_questionIndex)),
             RaisedButton(
               child: Text("Answer 1"),
               onPressed: answerToQuestion1,
@@ -54,3 +85,5 @@ class FirstApp extends StatelessWidget {
     );
   }
 }
+
+
